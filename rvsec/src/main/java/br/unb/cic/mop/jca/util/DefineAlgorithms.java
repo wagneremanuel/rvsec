@@ -18,11 +18,6 @@ public class DefineAlgorithms {
     {
         prop= new Properties();
         if (null != System.getProperty("javamop.properties")){
-            try {
-                System.out.println(Files.newInputStream(Paths.get(System.getProperty("javamop.properties"))));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
             try (InputStream input = Files.newInputStream(Paths.get(System.getProperty("javamop.properties")))) {
                 // load a properties file
                 prop.load(input);
@@ -81,7 +76,6 @@ public class DefineAlgorithms {
             padding.put("CFB", Arrays.asList("", "NOPADDING"));
             padding.put("OFB", Arrays.asList("", "NOPADDING"));
             padding.put("CCM",Arrays.asList("", "NOPADDING"));
-            System.out.println("commonPaddings = " + Arrays.asList("", "NOPADDING"));
         }
 
         // CBC like Paddings => CBC PCBC
@@ -93,7 +87,6 @@ public class DefineAlgorithms {
         } else {
             padding.put("CBC", Arrays.asList("PKCS5PADDING", "ISO10126PADDING", "PKCS5PADDING"));
             padding.put("PCBC", Arrays.asList("PKCS5PADDING", "ISO10126PADDING", "PKCS5PADDING"));
-
         }
 
         return padding;
